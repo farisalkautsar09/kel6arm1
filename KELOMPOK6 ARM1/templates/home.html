@@ -1,0 +1,30 @@
+{% extends 'layout.html' %} {% block title %} Home {% endblock %} {% block body %}
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron" style="background-color: rgb(138, 158, 224)">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">{% if session['name'] %} Login Berhasil! Selamat Datang Kakak {{ session['name'] }} {% else %} Silahkan Login atau Register Terlebih Dahulu {% endif %}</div>
+    </div>
+    <h1 class="text-center">Hello, Selamat Datang di Sistem Kontrol Produksi Kelompok 6 ARM1</h1>
+    <section class="text-center"><img src= {{ url_for('static', filename = "bc.jpg" )}} width="500" class="rounded-circle"/></section>
+  </div>
+</div>
+<div class="container" style="background-color: rgb(198, 199, 199)">
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Amanah</h2>
+      <p>Kami menjaga dan melindungi apa yang sudah diamanahan pelanggan pada kami serta melaksanakan tugas dengan sebaik-baiknya.</p>
+    </div>
+    <div class="col-md-4">
+      <h2>Jujur</h2>
+      <p>Kami mengutamakan selalu mengutamakan kesesuaian sikap antara perkataan yang diucapkan dan perbuatan yang dilakukan.</p>
+    </div>
+    <div class="col-md-4">
+      <h2>Berkualitas</h2>
+      <p>Kami selalu menyediakan produk yang bermutu tinggi dan mengusahakan meminimalis cacat untuk kenyamanan dan kepuasan pelanggan.</p>
+    </div>
+    <section class="text-center"><img src= {{ url_for('static', filename = "ab.jpg" )}} width="500" class="rounded-circle"/></section>
+  </div>
+</div>
+{% endblock %}

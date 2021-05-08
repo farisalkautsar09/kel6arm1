@@ -1,0 +1,85 @@
+{% extends 'layout.html' %} {% block title %} Admin {% endblock %} {% block body %}
+
+<div class="container">
+  <div class="starter-template">
+    {% if session['name'] %}
+    <h1>Data Users</h1>
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <td>Id</td>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Password</td>
+          <td>Role</td>
+          <td>Status</td>
+          <td>Aksi</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for row in users %}
+
+        <tr>
+          <td>{{row.id}}</td>
+          <td>{{ row.name }}</td>
+          <td>{{ row.password }}</td>
+          <td>{{ row.email }}</td>
+          <td>{{ row.role }}</td>
+          <td>{{ row.status }}</td>
+          <td>
+            <a href="#!" class="btn btn-success btn-xs" data-toggle="modal" data-target="#modalEdit{{ row.id }}">Edit</a>
+
+            <div id="modalEdit{{ row.id }}" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                    <h4 class="modal-title">Edit Users</h4>
+                  </div>
+
+                  <div class="modal-body">
+                    <form action="{{ url_for('apply') }}" method="POST">
+                      <div class="form-group">
+                        <label>Status:</label>
+
+                        <input type="hidden" name="id" value="{{ row.id }}" />
+
+                        <select id="Select" class="form-select text-left" name="apply">
+                          <option value="aktif">Apply</option>
+                          <option value="disaktif">Not Apply</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Update</button>
+                      </div>
+                    </form>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% else %}
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="3">Mohon maaf, data masih kosong.</td>
+        </tr>
+
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+    <p class="lead text-center" style="padding-top: 3rem">Silahkan Login atau Daftar Terlebih Dahulu!!</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
